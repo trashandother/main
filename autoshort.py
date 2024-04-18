@@ -7,10 +7,10 @@ from utils.db import db
 import requests
 import re
 
-status = db.get("autoshort", "status", True)
+status = db.get("custom.autoshort", "status", False)
 is_runned = filters.create(lambda _, __, ___: status)
 
-pattern = r'(?:https?://)?(?:www\.)?(?:[\w-]+\.)*[\w-]+\.[a-z]+'
+pattern = r'(?:https?://)?(?:www\.)?(?:[\w-]+\.)*[\w-]+\.[\w/.]+'
 
 @Client.on_message(is_runned & filters.me)
 async def autoshort_handler(_: Client, message: Message):
@@ -37,12 +37,12 @@ async def autoshort_handler(_: Client, message: Message):
 @Client.on_message(filters.command(["autoshort", "aush", "ah"], prefix) & filters.me)
 async def autoshort(_: Client, message: Message):
     await message.edit(f"<b>[AutoShort] Your links are safe now!</b>")
-    db.set("autoshort", "status", True)
+    db.set("custom.autoshort", "status", True)
     
 @Client.on_message(filters.command(["unautoshort", "unaush", "unah"], prefix) & filters.me)
 async def unautoshort(_: Client, message: Message):
     await message.edit(f"<b>[AutoShort] I'm disabled ;((</b>")
-    db.set("autoshort", "status", False)
+    db.set("custom.autoshort", "status", False)
 
 modules_help["autoshort"] = {
     "autoshort": "enable autoshort",
