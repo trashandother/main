@@ -48,7 +48,7 @@ async def unautoshort(_: Client, message: Message):
     await message.edit(f"<b>[AutoShort] I'm disabled ;((</b>")
     db.set("autoshort", "status", False)
 
-modules_help["AutoShort"] = {
+modules_help["autoshort"] = {
     "autoshort": "enable autoshort",
     "unautoshort": "disable autoshort",
 }
