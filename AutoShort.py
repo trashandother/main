@@ -21,7 +21,7 @@ url_pattern = (
 
 @Client.on_message(is_runned  & filters.me)
 async def autoshort_handler(_: Client, message: Message):
-    links = re.findall(pattern, message.text)
+    links = re.findall(url_pattern, message.text)
     for link in links:
         short = requests.post(
             "https://gg.gg/create",
