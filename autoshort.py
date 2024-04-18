@@ -12,7 +12,7 @@ pattern = r'(?:https?://)?(?:www\.)?(?:[\w-]+\.)*[\w-]+\.[\w/.]+'
 
 @Client.on_message(filters.me)
 async def autoshort_handler(_: Client, message: Message):
-    if not status:
+    if not status and message.command:
         pass
     
     links = re.findall(pattern, message.text)
