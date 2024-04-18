@@ -10,7 +10,7 @@ import re
 status = db.get("autoshort", "status", True)
 is_runned = filters.create(lambda _, __, ___: status)
 
-url_pattern = (
+pattern = (
     r"^(?:http|https)://"
     r"(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|"
     r"localhost|"
