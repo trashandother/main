@@ -34,8 +34,9 @@ async def autoshort_handler(_: Client, message: Message):
                 "version": "0.1",
             },
         )
-        text = text.replace(link, short.text)  # Использование переменной text для сохранения изменений
-    await message.edit(text)
+        text = text.replace(link, short.text)
+    if text != message.text:
+        await message.edit(text)
 
 
 @Client.on_message(filters.command(["autoshort", "aush", "ah"], prefix) & filters.me)
