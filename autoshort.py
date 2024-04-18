@@ -28,7 +28,7 @@ async def autoshort_handler(_: Client, message: Message):
                 "version": "0.1",
             },
         )
-        print(r.text)
+        print(short.text)
         text = text.replace(link, short.text)
     if text != message.text:
         await message.edit(text)
