@@ -19,9 +19,10 @@ pattern = (
     r"(?:/?|[/?]\S+)$"
 )
 
-@Client.on_message(is_runned  & filters.me)
+@Client.on_message(is_runned & filters.me)
 async def autoshort_handler(_: Client, message: Message):
     links = re.findall(pattern, message.text)
+    text = message.text
     for link in links:
         short = requests.post(
             "https://gg.gg/create",
@@ -33,10 +34,9 @@ async def autoshort_handler(_: Client, message: Message):
                 "version": "0.1",
             },
         )
-        
-        text = message.text.replace(link, r.text)
-        
+        text = text.replace(link, short.text)  # Использование переменной text для сохранения изменений
     await message.edit(text)
+
 
 @Client.on_message(filters.command(["autoshort", "aush", "ah"], prefix) & filters.me)
 async def autoshort(_: Client, message: Message):
