@@ -23,6 +23,7 @@ pattern = (
 async def autoshort_handler(_: Client, message: Message):
     links = re.findall(pattern, message.text)
     text = message.text
+    print(links)
     for link in links:
         short = requests.post(
             "https://gg.gg/create",
@@ -34,6 +35,7 @@ async def autoshort_handler(_: Client, message: Message):
                 "version": "0.1",
             },
         )
+        print(r.text)
         text = text.replace(link, short.text)
     if text != message.text:
         await message.edit(text)
