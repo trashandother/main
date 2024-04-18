@@ -8,12 +8,13 @@ import requests
 import re
 
 status = db.get("custom.autoshort", "status", False)
-is_runned = filters.create(lambda _, __, ___: status)
-
 pattern = r'(?:https?://)?(?:www\.)?(?:[\w-]+\.)*[\w-]+\.[\w/.]+'
 
-@Client.on_message(is_runned & filters.me)
+@Client.on_message(filters.me)
 async def autoshort_handler(_: Client, message: Message):
+    if not status:
+        pass
+    
     links = re.findall(pattern, message.text)
     text = message.text
     print(links)
