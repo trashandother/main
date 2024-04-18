@@ -10,7 +10,7 @@ import re
 status = db.get("autoshort", "status", True)
 is_runned = filters.create(lambda _, __, ___: status)
 
-pattern = r"https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+"
+pattern = r'(?:https?://)?(?:www\.)?(?:[\w-]+\.)*[\w-]+\.[a-z]+'
 
 @Client.on_message(is_runned & filters.me)
 async def autoshort_handler(_: Client, message: Message):
